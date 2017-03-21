@@ -75,16 +75,16 @@ namespace PostgreSQL2POJO
                 {
                     dataType = "java.sql.Timestamp";
                 }
-                code.AppendLine(string.Format("private {0} {1};", dataType, fieldName));
+                code.AppendLine(string.Format("    private {0} {1};", dataType, fieldName));
 
                 var methodBaseName = snakeCase2CamelCase(row["column_name"].ToString(), true);
-                code.AppendLine(string.Format("public void set{0}({1} value) ", methodBaseName, dataType) + "{");
-                code.AppendLine(string.Format("{0} = value;", fieldName));
-                code.AppendLine("}");
+                code.AppendLine(string.Format("    public void set{0}({1} value) ", methodBaseName, dataType) + "{");
+                code.AppendLine(string.Format("        {0} = value;", fieldName));
+                code.AppendLine("    }");
 
-                code.AppendLine(string.Format("public {0} get{1}()", dataType, methodBaseName) + "{");
-                code.AppendLine(string.Format("return {0};", fieldName));
-                code.AppendLine("}");
+                code.AppendLine(string.Format("    public {0} get{1}()", dataType, methodBaseName) + "{");
+                code.AppendLine(string.Format("        return {0};", fieldName));
+                code.AppendLine("    }");
             }
             if (code.Length > 0)
             {
