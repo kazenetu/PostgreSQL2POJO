@@ -25,6 +25,7 @@ namespace PostgreSQL2POJO
             var tc = getTableCols();
 
             var tableName = string.Empty;
+            var privates = new StringBuilder();
             var code = new StringBuilder();
 
             foreach(DataRow row in tc.Rows)
@@ -35,8 +36,10 @@ namespace PostgreSQL2POJO
                     {
                         var className = snakeCase2CamelCase(tableName, true) + "Entity";
 
-                        //クラス名をつける
-                        code.Insert(0, string.Format("public class {0} ",className) + "{" + Environment.NewLine);
+                        //クラス名とプライベートフィールドをつける
+                        string header = string.Format("public class {0} ", className) + "{" + Environment.NewLine;
+                        header += privates.ToString();
+                        code.Insert(0, header);
                         code.AppendLine("}");
 
                         // TODO ファイル書き出し
@@ -47,6 +50,7 @@ namespace PostgreSQL2POJO
 
                         // Codeのクリア
                         code.Length = 0;
+                        privates.Length = 0;
                     }
                     tableName = row["table_name"].ToString();
                 }
@@ -75,7 +79,7 @@ namespace PostgreSQL2POJO
                 {
                     dataType = "java.sql.Timestamp";
                 }
-                code.AppendLine(string.Format("    private {0} {1};", dataType, fieldName));
+                privates.AppendLine(string.Format("    private {0} {1};", dataType, fieldName));
 
                 var methodBaseName = snakeCase2CamelCase(row["column_name"].ToString(), true);
                 code.AppendLine(string.Format("    public void set{0}({1} value) ", methodBaseName, dataType) + "{");
@@ -90,8 +94,10 @@ namespace PostgreSQL2POJO
             {
                 var className = snakeCase2CamelCase(tableName, true) + "Entity";
 
-                //クラス名をつける
-                code.Insert(0, string.Format("public class {0} ", className) + "{" + Environment.NewLine);
+                //クラス名とプライベートフィールドをつける
+                string header = string.Format("public class {0} ", className) + "{" + Environment.NewLine;
+                header += privates.ToString();
+                code.Insert(0, header);
                 code.AppendLine("}");
 
                 // TODO ファイル書き出し
@@ -102,6 +108,7 @@ namespace PostgreSQL2POJO
 
                 // Codeのクリア
                 code.Length = 0;
+                privates.Length = 0;
             }
 
 
