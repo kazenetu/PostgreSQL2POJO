@@ -40,6 +40,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtNameSpace = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.txtOutputPath = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnSetOutputPath = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtURL
@@ -142,11 +146,44 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "NAMESPACE(Package)";
             // 
+            // folderBrowserDialog
+            // 
+            this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
+            // txtOutputPath
+            // 
+            this.txtOutputPath.Location = new System.Drawing.Point(15, 173);
+            this.txtOutputPath.Name = "txtOutputPath";
+            this.txtOutputPath.Size = new System.Drawing.Size(383, 19);
+            this.txtOutputPath.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 158);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(180, 12);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "出力先(指定がない場合は出力なし)";
+            // 
+            // btnSetOutputPath
+            // 
+            this.btnSetOutputPath.Location = new System.Drawing.Point(404, 169);
+            this.btnSetOutputPath.Name = "btnSetOutputPath";
+            this.btnSetOutputPath.Size = new System.Drawing.Size(34, 23);
+            this.btnSetOutputPath.TabIndex = 14;
+            this.btnSetOutputPath.Text = "...";
+            this.btnSetOutputPath.UseVisualStyleBackColor = true;
+            this.btnSetOutputPath.Click += new System.EventHandler(this.btnSetOutputPath_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(475, 427);
+            this.Controls.Add(this.btnSetOutputPath);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtOutputPath);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtNameSpace);
             this.Controls.Add(this.textBox1);
@@ -180,6 +217,10 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtNameSpace;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.TextBox txtOutputPath;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnSetOutputPath;
     }
 }
 

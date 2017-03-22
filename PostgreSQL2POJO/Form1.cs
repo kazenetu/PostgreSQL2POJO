@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -35,35 +36,8 @@ namespace PostgreSQL2POJO
                 {
                     if(methods.Length > 0)
                     {
-                        var className = snakeCase2CamelCase(tableName, true) + "Entity";
-
-
-                        var outputData = new StringBuilder();
-
-                        //名前空間の設定
-                        if (!string.IsNullOrEmpty(txtNameSpace.Text))
-                        {
-                            outputData.AppendLine("package " + txtNameSpace.Text + ";");
-                        }
-
-                        //クラス名をつける
-                        outputData.AppendLine("/**");
-                        outputData.AppendLine(" * " + tableComment);
-                        outputData.AppendLine(" */");
-                        outputData.AppendLine(string.Format("public class {0} ", className) + "{");
-
-                        //プライベートフィールドをつける
-                        outputData.AppendLine(privates.ToString());
-
-                        //セッター/ゲッター メソッドをつける
-                        outputData.Append(methods.ToString());
-                        outputData.AppendLine("}");
-
-                        // TODO ファイル書き出し
-
-                        // TEST
-                        debugText.AppendLine("[" + className + ".java]");
-                        debugText.AppendLine(outputData.ToString());
+                        debugText.AppendLine("[" + tableName + "]");
+                        debugText.AppendLine(outpuFile(tableName, tableComment, privates.ToString(), methods.ToString()));
 
                         // Codeのクリア
                         methods.Length = 0;
@@ -132,42 +106,61 @@ namespace PostgreSQL2POJO
             }
             if (methods.Length > 0)
             {
-                var className = snakeCase2CamelCase(tableName, true) + "Entity";
-
-
-                var outputData = new StringBuilder();
-
-                //名前空間の設定
-                if (!string.IsNullOrEmpty(txtNameSpace.Text))
-                {
-                    outputData.AppendLine("package " + txtNameSpace.Text + ";");
-                }
-
-                //クラス名をつける
-                outputData.AppendLine("/**");
-                outputData.AppendLine(" * " + tableComment);
-                outputData.AppendLine(" */");
-                outputData.AppendLine(string.Format("public class {0} ", className) + "{");
-
-                //プライベートフィールドをつける
-                outputData.AppendLine(privates.ToString());
-
-                //セッター/ゲッター メソッドをつける
-                outputData.Append(methods.ToString());
-                outputData.AppendLine("}");
-
-                // TODO ファイル書き出し
-
-                // TEST
-                debugText.AppendLine("[" + className + ".java]");
-                debugText.AppendLine(outputData.ToString());
+                debugText.AppendLine("[" + tableName + "]");
+                debugText.AppendLine(outpuFile(tableName, tableComment, privates.ToString(), methods.ToString()));
             }
 
-
-
+            if (txtOutputPath.Text.Length > 0)
+            {
+                debugText.AppendLine("---------------------------------------------------------");
+                debugText.AppendLine("ファイルを" + txtOutputPath.Text + "に出力しました。");
+                debugText.AppendLine("---------------------------------------------------------");
+            }
             //テスト用文字列をテキストエリアに格納
             this.textBox1.Text = debugText.ToString();
 
+        }
+
+        /// <summary>
+        /// ファイル出力
+        /// </summary>
+        /// <param name="tableName">テーブル名</param>
+        /// <param name="tableComment">テーブルコメント</param>
+        /// <param name="privates">プライベートフィールド</param>
+        /// <param name="methods">パブリックメソッド</param>
+        /// <returns>出力内容</returns>
+        private string outpuFile(string tableName, string tableComment, string privates, string methods)
+        {
+            var className = snakeCase2CamelCase(tableName, true) + "Entity";
+
+            var outputData = new StringBuilder();
+
+            //名前空間の設定
+            if (!string.IsNullOrEmpty(txtNameSpace.Text))
+            {
+                outputData.AppendLine("package " + txtNameSpace.Text + ";");
+            }
+
+            //クラス名をつける
+            outputData.AppendLine("/**");
+            outputData.AppendLine(" * " + tableComment);
+            outputData.AppendLine(" */");
+            outputData.AppendLine(string.Format("public class {0} ", className) + "{");
+
+            //プライベートフィールドをつける
+            outputData.AppendLine(privates.ToString());
+
+            //セッター/ゲッター メソッドをつける
+            outputData.Append(methods.ToString());
+            outputData.AppendLine("}");
+
+            if (txtOutputPath.Text.Length > 0)
+            {
+                var path = string.Format(@"{0}\{1}.java", txtOutputPath.Text, className);
+                File.WriteAllText(path, outputData.ToString(), Encoding.UTF8);
+            }
+
+            return outputData.ToString();
         }
 
         /// <summary>
@@ -258,6 +251,15 @@ namespace PostgreSQL2POJO
                 }
             }
             return result;
+        }
+
+        private void btnSetOutputPath_Click(object sender, EventArgs e)
+        {
+            txtOutputPath.Text = string.Empty;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtOutputPath.Text = folderBrowserDialog.SelectedPath;
+            }
         }
     }
 }
