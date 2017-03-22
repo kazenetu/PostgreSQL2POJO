@@ -200,16 +200,16 @@ namespace PostgreSQL2POJO
             var sql = new StringBuilder();
             sql.AppendLine("select ");
             sql.AppendLine("  table_name,");
-            sql.AppendLine("  pd.description as table_comment,");
+            sql.AppendLine("  coalesce(pd.description,table_name) as table_comment,");
             sql.AppendLine("  information_schema.columns.data_type,");
             sql.AppendLine("  column_name,");
-            sql.AppendLine("  pdc.description as column_comment");
+            sql.AppendLine("  coalesce(pdc.description,column_name) as column_comment");
             sql.AppendLine("from information_schema.columns");
             sql.AppendLine("inner join pg_stat_user_tables");
             sql.AppendLine("  on table_name = pg_stat_user_tables.relname");
-            sql.AppendLine("inner join pg_description pd");
+            sql.AppendLine("left join pg_description pd");
             sql.AppendLine("  on pg_stat_user_tables.relid = pd.objoid and pd.objsubid = 0");
-            sql.AppendLine("inner join pg_description pdc");
+            sql.AppendLine("left join pg_description pdc");
             sql.AppendLine("  on pg_stat_user_tables.relid = pdc.objoid and pdc.objsubid = ordinal_position");
             sql.AppendLine("order by table_name,ordinal_position;");
 
