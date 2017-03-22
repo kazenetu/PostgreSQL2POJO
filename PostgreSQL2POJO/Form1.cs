@@ -46,7 +46,7 @@ namespace PostgreSQL2POJO
                             outputData.AppendLine("package " + txtNameSpace.Text + ";");
                         }
 
-                        //クラス名とをつける
+                        //クラス名をつける
                         outputData.AppendLine("/**");
                         outputData.AppendLine(" * " + tableComment);
                         outputData.AppendLine(" */");
@@ -143,7 +143,7 @@ namespace PostgreSQL2POJO
                     outputData.AppendLine("package " + txtNameSpace.Text + ";");
                 }
 
-                //クラス名とをつける
+                //クラス名をつける
                 outputData.AppendLine("/**");
                 outputData.AppendLine(" * " + tableComment);
                 outputData.AppendLine(" */");
