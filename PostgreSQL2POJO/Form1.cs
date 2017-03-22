@@ -40,6 +40,12 @@ namespace PostgreSQL2POJO
 
                         var outputData = new StringBuilder();
 
+                        //名前空間の設定
+                        if (!string.IsNullOrEmpty(txtNameSpace.Text))
+                        {
+                            outputData.AppendLine("package " + txtNameSpace.Text + ";");
+                        }
+
                         //クラス名とをつける
                         outputData.AppendLine("/**");
                         outputData.AppendLine(" * " + tableComment);
@@ -130,6 +136,12 @@ namespace PostgreSQL2POJO
 
 
                 var outputData = new StringBuilder();
+
+                //名前空間の設定
+                if (!string.IsNullOrEmpty(txtNameSpace.Text))
+                {
+                    outputData.AppendLine("package " + txtNameSpace.Text + ";");
+                }
 
                 //クラス名とをつける
                 outputData.AppendLine("/**");

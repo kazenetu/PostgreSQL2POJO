@@ -38,6 +38,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnCreate = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNameSpace = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtURL
@@ -71,7 +73,7 @@
             this.txtDBName.Location = new System.Drawing.Point(326, 36);
             this.txtDBName.Name = "txtDBName";
             this.txtDBName.Size = new System.Drawing.Size(112, 19);
-            this.txtDBName.TabIndex = 3;
+            this.txtDBName.TabIndex = 1;
             // 
             // label3
             // 
@@ -87,14 +89,14 @@
             this.txtUser.Location = new System.Drawing.Point(57, 71);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(104, 19);
-            this.txtUser.TabIndex = 5;
+            this.txtUser.TabIndex = 2;
             // 
             // txtPW
             // 
             this.txtPW.Location = new System.Drawing.Point(251, 71);
             this.txtPW.Name = "txtPW";
             this.txtPW.Size = new System.Drawing.Size(104, 19);
-            this.txtPW.TabIndex = 7;
+            this.txtPW.TabIndex = 3;
             // 
             // label4
             // 
@@ -107,28 +109,46 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(193, 110);
+            this.btnCreate.Location = new System.Drawing.Point(192, 198);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
-            this.btnCreate.TabIndex = 8;
+            this.btnCreate.TabIndex = 5;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 139);
+            this.textBox1.Location = new System.Drawing.Point(14, 227);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(448, 176);
-            this.textBox1.TabIndex = 9;
+            this.textBox1.TabIndex = 6;
+            // 
+            // txtNameSpace
+            // 
+            this.txtNameSpace.Location = new System.Drawing.Point(15, 129);
+            this.txtNameSpace.Name = "txtNameSpace";
+            this.txtNameSpace.Size = new System.Drawing.Size(263, 19);
+            this.txtNameSpace.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 114);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(125, 12);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "NAMESPACE(Package)";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 340);
+            this.ClientSize = new System.Drawing.Size(475, 427);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtNameSpace);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.txtPW);
@@ -158,6 +178,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNameSpace;
+        private System.Windows.Forms.Label label5;
     }
 }
 
