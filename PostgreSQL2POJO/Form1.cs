@@ -18,6 +18,11 @@ namespace PostgreSQL2POJO
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 生成ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreate_Click(object sender, EventArgs e)
         {
             // テスト用
@@ -257,6 +262,11 @@ namespace PostgreSQL2POJO
             return result;
         }
 
+        /// <summary>
+        /// 出力パス設定ダイアログを表示ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSetOutputPath_Click(object sender, EventArgs e)
         {
             txtOutputPath.Text = string.Empty;
