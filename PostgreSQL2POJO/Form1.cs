@@ -216,7 +216,7 @@ namespace PostgreSQL2POJO
             outputData.AppendLine(string.Format("public class {0} ", className) + "{");
 
             //プライベートフィールドをつける
-            outputData.AppendLine(privates.ToString());
+            outputData.Append(privates.ToString());
 
             //セッター/ゲッター メソッドをつける
             outputData.Append(methods.ToString());
