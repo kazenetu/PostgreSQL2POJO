@@ -19,6 +19,55 @@ namespace PostgreSQL2POJO
         }
 
         /// <summary>
+        /// フォームオープン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // 画面設定値を設定
+            var path = string.Format(@"{0}\inputData.txt", Application.StartupPath);
+            if (File.Exists(path))
+            {
+                var readDataArray = File.ReadAllText(path, Encoding.UTF8).Split(',');
+
+                var index = 0;
+                txtURL.Text = readDataArray[index++];
+                txtDBName.Text = readDataArray[index++];
+                txtUser.Text = readDataArray[index++];
+                txtPW.Text = readDataArray[index++];
+                txtNameSpace.Text = readDataArray[index++];
+                txtOutputPath.Text = readDataArray[index++];
+            }
+        }
+
+        /// <summary>
+        /// フォームクローズ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 画面設定値を保存
+            var path = string.Format(@"{0}\inputData.txt", Application.StartupPath);
+
+            var inputData = new StringBuilder();
+            inputData.Append(txtURL.Text);
+            inputData.Append(",");
+            inputData.Append(txtDBName.Text);
+            inputData.Append(",");
+            inputData.Append(txtUser.Text);
+            inputData.Append(",");
+            inputData.Append(txtPW.Text);
+            inputData.Append(",");
+            inputData.Append(txtNameSpace.Text);
+            inputData.Append(",");
+            inputData.Append(txtOutputPath.Text);
+
+            File.WriteAllText(path, inputData.ToString(), Encoding.UTF8);
+        }
+
+        /// <summary>
         /// 出力パス設定ダイアログを表示ボタン
         /// </summary>
         /// <param name="sender"></param>
