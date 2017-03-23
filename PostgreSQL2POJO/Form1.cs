@@ -112,9 +112,13 @@ namespace PostgreSQL2POJO
 
             if (txtOutputPath.Text.Length > 0)
             {
+                var outputMessage = "ファイルを" + txtOutputPath.Text + "に出力しました。";
                 debugText.AppendLine("---------------------------------------------------------");
-                debugText.AppendLine("ファイルを" + txtOutputPath.Text + "に出力しました。");
+                debugText.AppendLine(outputMessage);
                 debugText.AppendLine("---------------------------------------------------------");
+
+                // メッセージボックスを表示
+                MessageBox.Show(outputMessage);
             }
             //テスト用文字列をテキストエリアに格納
             this.textBox1.Text = debugText.ToString();
