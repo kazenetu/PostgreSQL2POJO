@@ -98,7 +98,7 @@ namespace PostgreSQL2POJO
                 methods.AppendLine();
                 methods.AppendLine("    /**");
                 methods.AppendLine("     * " + columnComment + "を取得");
-                methods.AppendLine("     * @return ” + fieldName + ”を返す");
+                methods.AppendLine("     * @return " + fieldName + "を返す");
                 methods.AppendLine("     */");
                 methods.AppendLine(string.Format("    public {0} get{1}()", dataType, methodBaseName) + "{");
                 methods.AppendLine(string.Format("        return {0};", fieldName));
