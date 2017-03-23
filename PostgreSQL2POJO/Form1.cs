@@ -53,7 +53,7 @@ namespace PostgreSQL2POJO
                 var columnCommentTabIndex = columnComment.IndexOf("\t");
                 if (columnCommentTabIndex > 0)
                 {
-                    columnComment = columnComment.Substring(0, columnCommentTabIndex - 1);
+                    columnComment = columnComment.Substring(0, columnCommentTabIndex);
                 }
 
                 var orgDataType = row["data_type"].ToString().ToLower();
