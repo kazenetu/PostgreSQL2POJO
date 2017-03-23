@@ -48,7 +48,7 @@ namespace PostgreSQL2POJO
                 }
 
                 // プライベートフィールド
-                var fieldName = snakeCase2CamelCase(row["column_name"].ToString());
+                var fieldName = snakeCase2CamelCase(row["column_name"].ToString(), false);
                 var columnComment = row["column_comment"].ToString();
                 var columnCommentTabIndex = columnComment.IndexOf("\t");
                 if (columnCommentTabIndex > 0)
@@ -169,7 +169,7 @@ namespace PostgreSQL2POJO
         /// <param name="srcSnakeCase">変換元</param>
         /// <param name="isUpper">アッパーキャメルにするか否か</param>
         /// <returns>キャメルケース</returns>
-        private string snakeCase2CamelCase(string srcSnakeCase,bool isUpper = false)
+        private string snakeCase2CamelCase(string srcSnakeCase,bool isUpper)
         {
             if (srcSnakeCase.Length <= 0) return "";
 
