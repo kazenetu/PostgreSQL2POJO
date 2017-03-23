@@ -19,6 +19,20 @@ namespace PostgreSQL2POJO
         }
 
         /// <summary>
+        /// 出力パス設定ダイアログを表示ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSetOutputPath_Click(object sender, EventArgs e)
+        {
+            txtOutputPath.Text = string.Empty;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtOutputPath.Text = folderBrowserDialog.SelectedPath;
+            }
+        }
+
+        /// <summary>
         /// 生成ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
@@ -260,20 +274,6 @@ namespace PostgreSQL2POJO
                 }
             }
             return result;
-        }
-
-        /// <summary>
-        /// 出力パス設定ダイアログを表示ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSetOutputPath_Click(object sender, EventArgs e)
-        {
-            txtOutputPath.Text = string.Empty;
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                txtOutputPath.Text = folderBrowserDialog.SelectedPath;
-            }
         }
     }
 }
