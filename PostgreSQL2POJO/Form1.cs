@@ -130,6 +130,10 @@ namespace PostgreSQL2POJO
                 {
                     dataType = "java.math.BigDecimal";
                 }
+                else if (orgDataType == "numeric")
+                {
+                    dataType = "java.math.BigDecimal";
+                }
                 else if (orgDataType == "date")
                 {
                     dataType = "java.sql.Date";
