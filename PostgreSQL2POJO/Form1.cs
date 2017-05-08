@@ -160,6 +160,14 @@ namespace PostgreSQL2POJO
                 methods.AppendLine("     * @param value 設定値");
                 methods.AppendLine("     */");
                 methods.AppendLine(string.Format("    public void set{0}({1} value) ", methodBaseName, dataType) + "{");
+                if(dataType == "java.math.BigDecimal")
+                {
+                    methods.AppendLine("        if(value == null) {");
+                    methods.AppendLine(string.Format("            {0} = new {1}(0);", fieldName, dataType));
+                    methods.AppendLine("            return;");
+                    methods.AppendLine("        }");
+
+                }
                 methods.AppendLine(string.Format("        {0} = value;", fieldName));
                 methods.AppendLine("    }");
 
