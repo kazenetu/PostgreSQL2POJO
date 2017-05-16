@@ -134,6 +134,10 @@ namespace PostgreSQL2POJO
                 {
                     dataType = "java.math.BigDecimal";
                 }
+                else if (orgDataType == "bigint")
+                {
+                    dataType = "long";
+                }
                 else if (orgDataType == "date")
                 {
                     dataType = "java.sql.Date";
@@ -143,6 +147,10 @@ namespace PostgreSQL2POJO
                     dataType = "java.sql.Time";
                 }
                 else if (orgDataType == "timestamp")
+                {
+                    dataType = "java.sql.Timestamp";
+                }
+                else if (orgDataType == "time without time zone")
                 {
                     dataType = "java.sql.Timestamp";
                 }
