@@ -38,4 +38,15 @@ PostgreSQLのテーブルからPOJOを作る
   USER_NAME → getUserName
 
 ### DBデータ型とJavadデータ型の変換表
-TODO 変換表を書く。
+| DBデータ型            | Javadデータ型      |
+|:---------------------|:-------------------|
+|integer               |int                 |
+|decimal               |java.math.BigDecimal|
+|numeric               |java.math.BigDecimal|
+|bigint                |long                |
+|date                  |java.sql.Date       |
+|time                  |java.sql.Time       |
+|timestamp             |java.sql.Timestamp  |
+|time without time zone|java.sql.Timestamp  |
+
+
