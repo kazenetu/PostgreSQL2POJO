@@ -37,8 +37,8 @@ PostgreSQLのテーブルからPOJOを作る
 * ゲッターメソッド  
   USER_NAME → getUserName
 
-### DBデータ型とJavadデータ型の変換表
-| DBデータ型            | Javadデータ型      |
+### DBデータ型とJavaデータ型の変換表
+| DBデータ型            | Javaデータ型       |
 |:---------------------|:-------------------|
 |integer               |int                 |
 |decimal               |java.math.BigDecimal|
